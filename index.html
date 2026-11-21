@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,13 +8,44 @@
 <body>
 
     <h1>AI Government Schemes Finder</h1>
-
     <p>Find government schemes suitable for you.</p>
 
-    <button onclick="showMessage()">
-        Get Started
-    </button>
+    <form id="schemeForm">
+
+        <label>Name:</label><br>
+        <input type="text" id="name" placeholder="Enter your name" required>
+        <br><br>
+
+        <label>Age:</label><br>
+        <input type="number" id="age" placeholder="Enter your age" required>
+        <br><br>
+
+        <label>State:</label><br>
+        <input type="text" id="state" placeholder="Enter your state" required>
+        <br><br>
+
+        <label>Occupation:</label><br>
+        <select id="occupation" required>
+            <option value="">Select occupation</option>
+            <option>Student</option>
+            <option>Farmer</option>
+            <option>Employee</option>
+            <option>Unemployed</option>
+            <option>Other</option>
+        </select>
+        <br><br>
+
+        <label>Annual Family Income:</label><br>
+        <input type="number" id="income" placeholder="Enter annual income" required>
+        <br><br>
+
+        <button type="submit">Find Schemes</button>
+
+    </form>
+
+    <div id="result"></div>
 
     <script src="script.js"></script>
+
 </body>
 </html>
