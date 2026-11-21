@@ -1,104 +1,119 @@
 
-* {
-    box-sizing: border-box;
-}
+const schemes = [
+    {
+        name: "National Scholarship Portal",
+        category: "Student",
+        benefit: "Explore central and state scholarship opportunities.",
+        eligibility: "Eligibility varies by scholarship, course and income criteria.",
+        link: "https://scholarships.gov.in/"
+    },
+    {
+        name: "PM-KISAN",
+        category: "Farmer",
+        benefit: "Eligible farmer families may receive financial assistance.",
+        eligibility: "Subject to PM-KISAN landholding and exclusion rules.",
+        link: "https://pmkisan.gov.in/"
+    },
+    {
+        name: "National Career Service",
+        category: "Unemployed",
+        benefit: "Explore job opportunities and career services.",
+        eligibility: "Check registration and service requirements on the portal.",
+        link: "https://www.ncs.gov.in/"
+    },
+    {
+        name: "e-Shram",
+        category: "Employee",
+        benefit: "Explore social security services for eligible unorganised workers.",
+        eligibility: "Eligibility depends on unorganised worker criteria.",
+        link: "https://eshram.gov.in/"
+    },
+    {
+        name: "MyScheme",
+        category: "Other",
+        benefit: "Explore government schemes based on your profile.",
+        eligibility: "Check the individual scheme eligibility rules.",
+        link: "https://www.myscheme.gov.in/"
+    }
+];
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f1f5f9;
-    color: #263445;
-}
+function showSchemes(list) {
+    const result = document.getElementById("result");
 
-header {
-    background: #123c69;
-    color: white;
-    text-align: center;
-    padding: 35px 15px;
-}
-
-header h1 {
-    margin: 0 0 12px;
-}
-
-.intro {
-    text-align: center;
-    padding: 30px 15px;
-}
-
-.form-box, .search-box {
-    background: white;
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 3px 12px #00000012;
-}
-
-label {
-    display: block;
-    margin-top: 15px;
-    font-weight: bold;
-}
-
-input, select {
-    width: 100%;
-    padding: 12px;
-    margin-top: 7px;
-    border: 1px solid #ccd5df;
-    border-radius: 6px;
-    font-size: 16px;
-}
-
-button {
-    width: 100%;
-    margin-top: 22px;
-    padding: 13px;
-    background: #1565c0;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #0d47a1;
-}
-
-.results {
-    max-width: 850px;
-    margin: 25px auto;
-    padding: 15px;
-}
-
-.scheme-card {
-    background: white;
-    padding: 20px;
-    margin: 15px 0;
-    border-left: 5px solid #1565c0;
-    border-radius: 8px;
-}
-
-.scheme-card a {
-    color: #1565c0;
-    font-weight: bold;
-}
-
-footer {
-    background: #123c69;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-}
-
-@media (max-width: 650px) {
-    .form-box, .search-box {
-        margin: 15px;
+    if (list.length === 0) {
+        result.innerHTML = "<h3>No matching schemes found. Try another search.</h3>";
+        return;
     }
 
-    header h1 {
-        font-size: 24px;
-    }
+    result.innerHTML = "<h2>Recommended Government Schemes</h2>";
+
+    list.forEach(scheme => {
+        result.innerHTML += `
+            <div class="scheme-card">
+                <h3>${scheme.name}</h3>
+                <p><b>Benefit:</b> ${scheme.benefit}</p>
+                <p><b>Eligibility:</b> ${scheme.eligibility}</p>
+                <a href="${scheme.link}" target="_blank" rel="noopener">
+                    Visit Official Portal
+                </a>
+            </div>
+        `;
+    });
 }
+
+document.getElementById("schemeForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const age = Number(document.getElementById("age").value);
+    const state = document.getElementById("state").value.trim();
+    const occupation = document.getElementById("occupation").value;
+    const income = Number(document.getElementById("income").value);
+
+    if (!name || !state || age < 1 || age > 120 || income < 0) {
+        alert("Please enter valid details.");
+        return;
+    }
+
+    const matches = schemes.filter(scheme =>
+        scheme.category === occupation || scheme.category === "Other"
+    );
+
+    document.getElementById("result").innerHTML =
+        `<h2>Hello ${name}!</h2>
+         <p>Age: ${age} | State: ${state}</p>
+         <p>Annual Income: ₹${income.toLocaleString("en-IN")}</p>`;
+
+    showSchemes(matches);
+});
+
+document.getElementById("searchInput").addEventListener("input", function() {
+    const keyword = this.value.toLowerCase();
+
+    const matches = schemes.filter(scheme =>
+        scheme.name.toLowerCase().includes(keyword) ||
+        scheme.category.toLowerCase().includes(keyword) ||
+        scheme.benefit.toLowerCase().includes(keyword)
+    );
+
+    const searchResults = document.getElementById("searchResults");
+
+    if (!keyword) {
+        searchResults.innerHTML = "";
+        return;
+    }
+
+    searchResults.innerHTML = matches.map(scheme => `
+        <div class="scheme-card">
+            <h3>${scheme.name}</h3>
+            <p>${scheme.benefit}</p>
+            <a href="${scheme.link}" target="_blank" rel="noopener">
+                Official Portal
+            </a>
+        </div>
+    `).join("");
+
+    if (matches.length === 0) {
+        searchResults.innerHTML = "<p>No schemes found.</p>";
+    }
+});
