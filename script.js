@@ -1,3 +1,4 @@
+
 document.getElementById("schemeForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -9,29 +10,42 @@ document.getElementById("schemeForm").addEventListener("submit", function(event)
     let schemes = [];
 
     if (occupation === "Student" && age <= 25) {
-        schemes.push("National Scholarship Portal - Student scholarships");
+        schemes.push({
+            name: "National Scholarship Portal",
+            link: "https://scholarships.gov.in/"
+        });
     }
 
     if (occupation === "Farmer") {
-        schemes.push("PM-KISAN - Farmer income support");
+        schemes.push({
+            name: "PM-KISAN",
+            link: "https://pmkisan.gov.in/"
+        });
     }
 
     if (occupation === "Unemployed") {
-        schemes.push("Skill India - Skill development opportunities");
+        schemes.push({
+            name: "Skill India Digital Hub",
+            link: "https://www.skillindiadigital.gov.in/"
+        });
     }
 
-    if (income <= 250000) {
-        schemes.push("Check eligible Central and State welfare schemes");
+    if (schemes.length === 0) {
+        schemes.push({
+            name: "Explore Government Schemes",
+            link: "https://www.myscheme.gov.in/"
+        });
     }
 
     let result = document.getElementById("result");
 
-    if (schemes.length === 0) {
-        schemes.push("Explore government schemes based on your state and eligibility.");
-    }
-
-    result.innerHTML = "<h2>Hello " + name + "!</h2>" +
-        "<h3>Suggested Schemes:</h3><ul>" +
-        schemes.map(scheme => "<li>" + scheme + "</li>").join("") +
-        "</ul><p>Note: These are preliminary suggestions, not confirmed eligibility.</p>";
+    result.innerHTML =
+        "<h2>Hello " + name + "!</h2>" +
+        "<h3>Suggested Schemes:</h3>" +
+        schemes.map(s =>
+            '<p>' + s.name +
+            ' <a href="' + s.link +
+            '" target="_blank" rel="noopener">Visit Official Website</a></p>'
+        ).join("") +
+        "<p>Note: Check official eligibility criteria before applying.</p>";
 });
