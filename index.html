@@ -1,71 +1,71 @@
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Government Schemes Finder</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-    <h1>🇮🇳 AI Government Schemes Finder</h1>
-    <p>Discover Government Schemes Made for You</p>
-</header>
+<nav>
+    <h2>Scheme Finder</h2>
+    <div>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#schemeForm">Find Schemes</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
 
-<main>
-    <section class="intro">
-        <h2>Find the Right Government Scheme</h2>
-        <p>Enter your details and explore schemes that may match your profile.</p>
-    </section>
+<section id="home">
+    <h1>AI Government Schemes Finder</h1>
+    <p>Discover Government Schemes That Match Your Eligibility</p>
+</section>
 
-    <section class="form-box">
-        <h2>Your Details</h2>
+<form id="schemeForm">
+    <h2>Find Suitable Schemes</h2><br>
 
-        <form id="schemeForm">
-            <label>Name</label>
-            <input type="text" id="name" placeholder="Enter your name" required>
+    <label>Name:</label>
+    <input type="text" id="name" required>
 
-            <label>Age</label>
-            <input type="number" id="age" min="1" max="120" required>
+    <br><br>
+    <label>Age:</label>
+    <input type="number" id="age" required>
 
-            <label>State</label>
-            <input type="text" id="state" placeholder="Enter your state" required>
+    <br><br>
+    <label>State:</label>
+    <input type="text" id="state" required>
 
-            <label>Occupation</label>
-            <select id="occupation" required>
-                <option value="">Select occupation</option>
-                <option>Student</option>
-                <option>Farmer</option>
-                <option>Employee</option>
-                <option>Unemployed</option>
-                <option>Other</option>
-            </select>
+    <br><br>
+    <label>Occupation:</label>
+    <select id="occupation" required>
+        <option value="">Select occupation</option>
+        <option>Student</option>
+        <option>Farmer</option>
+        <option>Employee</option>
+        <option>Unemployed</option>
+        <option>Other</option>
+    </select>
 
-            <label>Annual Family Income (₹)</label>
-            <input type="number" id="income" min="0" placeholder="Enter annual income" required>
+    <br><br>
+    <label>Annual Family Income:</label>
+    <input type="number" id="income" required>
 
-            <button type="submit">Find Schemes</button>
-        </form>
-    </section>
+    <button type="submit">Find Schemes</button>
+</form>
 
-    <section id="result" class="results"></section>
+<div id="result"></div>
 
-    <section class="search-box">
-        <h2>Search Government Schemes</h2>
-        <input type="text" id="searchInput"
-               placeholder="Search student, farmer, scholarship...">
-        <div id="searchResults"></div>
-    </section>
-</main>
+<section id="about">
+    <h2>About Our Project</h2>
+    <p>This application helps people discover government schemes based on their basic details and eligibility.</p>
+</section>
 
-<footer>
-    <p>AI Government Schemes Finder | ECE Project</p>
-    <p>Verify eligibility and application details on official portals.</p>
-</footer>
+<section id="contact">
+    <h2>Contact</h2>
+    <p>AI Government Schemes Finder – Student Project</p>
+</section>
 
-<script src="script.js?v=4"></script>
+<script src="script.js"></script>
+
 </body>
 </html>
