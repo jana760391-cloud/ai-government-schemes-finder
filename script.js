@@ -1,61 +1,104 @@
 
-document.getElementById("schemeForm").addEventListener("submit", function(event) {
-    event.preventDefault();
+* {
+    box-sizing: border-box;
+}
 
-    let name = document.getElementById("name").value;
-    let age = document.getElementById("age").value;
-    let state = document.getElementById("state").value;
-    let occupation = document.getElementById("occupation").value;
-    let income = document.getElementById("income").value;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #263445;
+}
 
-    let result = document.getElementById("result");
+header {
+    background: #123c69;
+    color: white;
+    text-align: center;
+    padding: 35px 15px;
+}
 
-    let scheme = "";
+header h1 {
+    margin: 0 0 12px;
+}
 
-    if (occupation === "Student") {
-        scheme = `
-            <h3>Recommended Scheme Portal</h3>
-            <p>National Scholarship Portal</p>
-            <a href="https://scholarships.gov.in/" target="_blank">
-                Visit Scholarship Portal
-            </a>
-        `;
+.intro {
+    text-align: center;
+    padding: 30px 15px;
+}
+
+.form-box, .search-box {
+    background: white;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #00000012;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 7px;
+    border: 1px solid #ccd5df;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    margin-top: 22px;
+    padding: 13px;
+    background: #1565c0;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0d47a1;
+}
+
+.results {
+    max-width: 850px;
+    margin: 25px auto;
+    padding: 15px;
+}
+
+.scheme-card {
+    background: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-left: 5px solid #1565c0;
+    border-radius: 8px;
+}
+
+.scheme-card a {
+    color: #1565c0;
+    font-weight: bold;
+}
+
+footer {
+    background: #123c69;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+@media (max-width: 650px) {
+    .form-box, .search-box {
+        margin: 15px;
     }
-    else if (occupation === "Farmer") {
-        scheme = `
-            <h3>Recommended Scheme</h3>
-            <p>PM-KISAN Samman Nidhi</p>
-            <a href="https://pmkisan.gov.in/" target="_blank">
-                Visit PM-KISAN Portal
-            </a>
-        `;
-    }
-    else if (occupation === "Unemployed") {
-        scheme = `
-            <h3>Recommended Portal</h3>
-            <p>National Career Service</p>
-            <a href="https://www.ncs.gov.in/" target="_blank">
-                Visit NCS Portal
-            </a>
-        `;
-    }
-    else {
-        scheme = `
-            <h3>Explore Government Schemes</h3>
-            <a href="https://www.india.gov.in/" target="_blank">
-                Visit Government Portal
-            </a>
-        `;
-    }
 
-    result.innerHTML = `
-        <h2>Welcome ${name}!</h2>
-        <p>Age: ${age}</p>
-        <p>State: ${state}</p>
-        <p>Occupation: ${occupation}</p>
-        <p>Annual Income: ₹${income}</p>
-        <h3>Your details submitted successfully!</h3>
-        ${scheme}
-        <p>Note: Final eligibility depends on the official scheme rules.</p>
-    `;
-});
+    header h1 {
+        font-size: 24px;
+    }
+}
